@@ -5,6 +5,7 @@ public class PlayerController : MonoBehaviour
 {
 
     public float speed = 10;
+	public GameObject bulletPrefab;
 	Vector3 move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -13,9 +14,9 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    // Update is called once per frame
-    void Update()
-    {
+	// Update is called once per frame
+	void Update()
+	{
 
 		move = Vector3.zero;
 
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
 		{
 			move += new Vector3(0, -1, 0);
 		}
-			
+
 		move = move.normalized;
 		if (move.x < 0)
 		{
@@ -58,10 +59,33 @@ public class PlayerController : MonoBehaviour
 			GetComponent<Animator>().SetTrigger("Stop");
 		}
 
+		if (Mouse.current.leftButton.wasPressedThisFrame)
+		{
+			Shoot();
 		}
 
+		}
 
-    private void FixedUpdate()
+	void Shoot()
+	{
+		Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
+
+		Vector3 worldPosition = Camera.main.ScreenToWorldPoint(
+			new Vector3(mouseScreenPosition.x, mouseScreenPosition.y, Camera.main.nearClipPlane)
+		);
+		worldPosition.z = 0;
+		worldPosition -= (transform.position + new Vector3(0, -0.5f, 0));
+
+		Debug.Log(worldPosition);
+
+		GameObject newBullet = Instantiate<GameObject>(bulletPrefab);
+		newBullet.transform.position = transform.position + new Vector3(0, -0, -0.5f);
+		newBullet.GetComponent<Bullet>().Direction = worldPosition;
+	}
+
+
+
+	private void FixedUpdate()
     {
 		transform.Translate(move * speed * Time.fixedDeltaTime);
     }
