@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeEnabled: 0
-  m_ApplyToSortingLayers: 000000002b4aa9ef5513a1ad
+  m_ApplyToSortingLayers: 000000002b4aa9ef5513a1ada5e7aec8
   m_LightCookieSprite: {fileID: 0}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -6953,7 +6953,7 @@ GameObject:
   - component: {fileID: 1699757332}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6971,6 +6971,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NewMonoBehaviourScript
   speed: 10
+  bulletPrefab: {fileID: 2194934507042395900, guid: ff9a3b849b894884e9df8a1c576ea8d7, type: 3}
 --- !u!212 &1699757328
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -7145,7 +7146,7 @@ GameObject:
   - component: {fileID: 1768579786}
   m_Layer: 0
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
