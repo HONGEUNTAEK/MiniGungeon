@@ -78,9 +78,13 @@ public class PlayerController : MonoBehaviour
 
 		Debug.Log(worldPosition);
 
-		GameObject newBullet = Instantiate<GameObject>(bulletPrefab);
-		newBullet.transform.position = transform.position + new Vector3(0, -0, -0.5f);
-		newBullet.GetComponent<Bullet>().Direction = worldPosition;
+		GameObject newBullet = GetComponent<ObjectPool>().Get();
+		if (newBullet != null)
+		{
+			newBullet.transform.position = transform.position + new Vector3(0, -0, -0.5f);
+			newBullet.GetComponent<Bullet>().Direction = worldPosition;
+		}
+		
 	}
 
 
