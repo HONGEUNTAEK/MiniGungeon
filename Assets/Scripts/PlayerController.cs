@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 		worldPosition.z = 0;
 		worldPosition -= (transform.position + new Vector3(0, -0.5f, 0));
 
-		Debug.Log(worldPosition);
+		//Debug.Log(worldPosition);
 
 		GameObject newBullet = GetComponent<ObjectPool>().Get();
 		if (newBullet != null)
