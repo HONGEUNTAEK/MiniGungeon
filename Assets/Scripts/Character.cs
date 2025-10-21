@@ -3,11 +3,16 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
 
-    public float MaxHP = 3; 
+    public float MaxHP = 3;
     float HP;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
+    {
+        HP = MaxHP;
+    }
+
+    public void Initialize()
     {
         HP = MaxHP;
     }
