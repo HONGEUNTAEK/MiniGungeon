@@ -5,7 +5,7 @@ public class GameManager : MonoBehaviour
 
     public GameObject player;
     public float spawnTerm = 5;
-    public float fasterEverySpawn = 0.05f
+    public float fasterEverySpawn = 0.05f;
     public float minSpawnTerm = 1;
     float timeAfterLasgSpawn = 0;
 
