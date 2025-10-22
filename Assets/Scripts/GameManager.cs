@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -7,18 +8,22 @@ public class GameManager : MonoBehaviour
     public float spawnTerm = 5;
     public float fasterEverySpawn = 0.05f;
     public float minSpawnTerm = 1;
+    public TextMeshProUGUI scoreText;
     float timeAfterLasgSpawn = 0;
+    float score;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         timeAfterLasgSpawn = 0;
+        score = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         timeAfterLasgSpawn += Time.deltaTime;
+        score += Time.deltaTime;
 
         if (timeAfterLasgSpawn > spawnTerm)
         {
@@ -32,6 +37,7 @@ public class GameManager : MonoBehaviour
                 spawnTerm = minSpawnTerm;
             }
         }
+        scoreText.text = ((int)score).ToString();
     }
 
     void SpawnEnemy()
