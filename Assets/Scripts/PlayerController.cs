@@ -1,5 +1,6 @@
     using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -9,7 +10,12 @@ public class PlayerController : MonoBehaviour
 
 	public Material flashMaterial;
 	public Material deafaultMaterial;
-	Vector3 move;
+
+	public AudioClip shotSound;
+	public AudioClip hitSound;
+    public AudioClip deadSound;
+
+    Vector3 move;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -71,6 +77,9 @@ public class PlayerController : MonoBehaviour
 
 	void Shoot()
 	{
+
+		GetComponent<AudioSource>().PlayOneShot(shotSound);
+
 		Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
 
 		Vector3 worldPosition = Camera.main.ScreenToWorldPoint(
@@ -100,13 +109,15 @@ public class PlayerController : MonoBehaviour
 		{
 			if (GetComponent<Character>().Hit(1))
 			{
-				// 살아있음
-				Flash();
+                // 살아있음
+                GetComponent<AudioSource>().PlayOneShot(hitSound);
+                Flash();
 			}
 			else
 			{
-				// 죽어있음
-				Die();
+                // 죽어있음
+                GetComponent<AudioSource>().PlayOneShot(deadSound);
+                Die();
 			}
 		}
     }
@@ -129,6 +140,6 @@ public class PlayerController : MonoBehaviour
 
 	void AfterDying()
 	{
-		//gameObject.SetActive(false);
+		SceneManager.LoadScene("GameOverScene");
 	}
 }

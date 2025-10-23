@@ -15,6 +15,9 @@ public class EnemyController : MonoBehaviour
     public Material flashMaterial;
     public Material deafaultMaterial;
 
+    public AudioClip hitSound;
+    public AudioClip deadSound;
+
     GameObject target;
     State state;
 
@@ -69,13 +72,15 @@ public class EnemyController : MonoBehaviour
             float d = collision.gameObject.GetComponent<Bullet>().damage;
 
             if (GetComponent<Character>().Hit(d))
-            { 
+            {
                 // 살아있음
+                GetComponent<AudioSource>().PlayOneShot(hitSound);
                 Flash();
             }
             else
             {
                 // 죽어있음
+                GetComponent<AudioSource>().PlayOneShot(deadSound);
                 Die();
             }
 		}
